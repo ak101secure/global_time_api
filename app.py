@@ -2,14 +2,15 @@ from flask import Flask, request, jsonify
 from datetime import datetime
 import pytz
 app = Flask(__name__)
+
 @app.route('/api/convert-time', methods=['GET'])
+
 def convert_time():
     tz_name = request.args.get('timezone', default='UTC').strip()
     try:
         target_timezone = pytz.timezone(tz_name)
     except pytz.UnknownTimeZoneError:
-        return jsonify({"error": "Invalid timezone"}), 
-
+        return jsonify({"error": "Invalid timezone"})
     now_naive = datetime.now()
     now_naive_str = now_naive.isoformat()
     now_aware = target_timezone.localize(now_naive)
