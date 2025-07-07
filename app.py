@@ -3,7 +3,7 @@ from datetime import datetime
 import pytz
 app = Flask(__name__)
 
-@app.route('/api/convert-time', methods=['GET'])
+@app.route('/api/convert-time', methods=['GET','POST'])
 
 def convert_time():
     tz_name = request.args.get('timezone', default='UTC').strip()
